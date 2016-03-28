@@ -1,0 +1,67 @@
+/* CSS declarations go here */
+
+.sidenav {
+    height: calc(100vh - 64px);
+    overflow-y: scroll;
+}
+
+.chatroom {
+    height: calc(100vh - 64px);
+}
+
+.row {
+    margin-bottom: 0px;
+}
+
+#chat-box {
+    height: 85%;
+    overflow-y: scroll;
+}
+
+#message-box {
+    height: 15%;
+    max-height: 15%;
+}
+
+#chat {
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+}
+
+
+/* label color */
+
+.input-field label {
+    color: #000;
+}
+
+.input-field .prefix {
+    color: #000;
+}
+
+.input-field input[type=text] {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+
+/* label focus color */
+
+.input-field input[type=text]:focus + label {
+    color: #03a9f4;
+}
+
+
+/* icon prefix focus color */
+
+.input-field .prefix.active {
+    color: #03a9f4;
+}
+
+
+/* label underline focus color */
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #03a9f4;
+    box-shadow: 0 1px 0 0 #03a9f4;
+}
