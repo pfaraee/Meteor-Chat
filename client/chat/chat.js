@@ -1,6 +1,7 @@
-Meteor.subscribe("messages");
-Meteor.subscribe("userData");
-Meteor.subscribe("chat_rooms");
+Template.chat.onCreated(function () {
+    Meteor.subscribe("messages");
+    Meteor.subscribe("userData");
+});
 
 Template.chat.events({
     "submit .message-form": function (event) {
@@ -32,29 +33,10 @@ Template.chat.events({
         });
 
         event.target.message.value = "";
-    },
-    "submit .create-room": function (event) {
-        event.preventDefault();
-
-        var room = ChatRooms.insert({
-            name: event.target.name.value,
-            users: 0,
-            private: false
-        });
-
-        event.target.name.value = "";
-
-        Router.go("chat", {
-            _id: room
-        });
     }
 });
 
 Template.chat.helpers({
-    messages: function () {
-        console.log(this.fetch());
-        return this;
-    },
     getUsername: function () {
         var user = Meteor.users.findOne(this.author);
 
@@ -64,18 +46,5 @@ Template.chat.helpers({
     },
     isYou: function () {
         return this.author == Meteor.userId();
-    },
-    chatRooms: function () {
-        return ChatRooms.find();
-    }
-});
-
-Template.chatroom.events({
-    "click .join-room": function (event) {
-        event.preventDefault();
-
-        Router.go("chat", {
-            _id: this._id
-        });
     }
 });

@@ -1,5 +1,9 @@
+Router.configure({
+    layoutTemplate: 'ApplicationLayout'
+});
+
 Router.route('/', function () {
-    this.render('chat');
+    this.render('home');
 });
 
 Router.route('/chat/:_id', function () {
