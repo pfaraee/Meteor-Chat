@@ -6,17 +6,17 @@ Meteor.publish("messages", function () {
         return Messages.find({
             $or: [
                 {
-                    private: false
+                    private: false // all public messages
                 },
                 {
                     private: true,
-                    author: this.userId
+                    author: this.userId // all private messages we've sent
                 },
                 {
                     private: true,
                     authorized: {
                         $in: [
-                            user.username
+                            user.username // all private messages sent to us
                         ]
                     }
                 }
@@ -27,4 +27,8 @@ Meteor.publish("messages", function () {
 
 Meteor.publish("userData", function () {
     return Meteor.users.find();
+});
+
+Meteor.publish("chat_rooms", function () {
+    return ChatRooms.find();
 });

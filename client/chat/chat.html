@@ -1,0 +1,80 @@
+<template name="chat">
+    <header>
+        <nav>
+            <div class="nav-wrapper light-blue darken-3">
+                <div class="container">
+                    <div class="brand-logo">Meteor Chat</div>
+                    <ul class="right">
+                        <li><a>Home</a></li>
+                        <li><a>Profile</a></li>
+                        <li>{{> loginButtons }}</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col m4 l3 light-blue sidenav">
+                <h1 class="white-text">Chat Rooms</h1>
+                <div class="card-panel key">
+                    <h5>Commands</h5>
+                    <p>You can use /tell "user" "message" to send a private message.</p>
+                </div>
+                <div class="card-panel">
+                    <h5>New Chat Room</h5>
+                    <form class="create-room">
+                        <div class="input-field ">
+                            <input id="name" type="text" class="validate">
+                            <label class="active" for="name">Name</label>
+                        </div>
+                        <button class="btn waves-effect waves-light light-blue darken-1" type="submit" name="action">Create
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+                {{#each chatRooms}} {{>chatroom}} {{/each}}
+
+            </div>
+            <div class="col m8 l9 chatroom">
+                <div class="row" id="chat-box">
+                    {{#each messages}} {{#unless private}} {{#if isYou}}
+                    <div class="card-panel light-blue lighten-4" id="chat">
+                        {{getUsername}}: {{content}}
+                    </div>
+                    {{else}}
+                    <div class="card-panel orange lighten-4" id="chat">
+                        {{getUsername}}: {{content}}
+                    </div>
+                    {{/if}} {{else}}
+                    <div class="card-panel pink lighten-4" id="chat">
+                        {{getUsername}}: {{content}}
+                    </div>
+                    {{/unless}} {{/each}}
+                </div>
+                <div class="row valign-wrapper" id="message-box">
+                    <form class="col s12 message-form">
+                        <div class="row">
+                            {{#if currentUser}}
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <input id="new_message" type="text" length="120" name="message">
+                                <label for="new_message">New Message</label>
+                            </div>
+                            {{else}}
+                            <h3 class="center">Please login to begin sending messages.</h3> {{/if}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</template>
+
+<template name="chatroom">
+    <div class="card-panel">
+        {{name}}
+        <br>Users: {{users}}
+        <div class="btn right light-blue darken-1 join-room">Join</div>
+    </div>
+</template>

@@ -8,3 +8,13 @@ Messages = new Mongo.Collection('messages');
         private bool
         authorized array
 */
+
+ChatRooms = new Mongo.Collection('chat_rooms');
+
+/*
+    ChatRooms
+        _id string
+        name string
+        users int
+        private bool
+*/
