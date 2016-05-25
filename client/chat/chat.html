@@ -1,27 +1,33 @@
 <template name="chat">
     <div class="row" id="chat-box">
         {{#each this}} {{#unless private}} {{#if isYou}}
-        <div class="card-panel light-blue lighten-4" id="chat">
+        <div class="panel panel-default" id="chat">
+          <div class="panel-body">
             {{getUsername}}: {{content}}
+          </div>
         </div>
         {{else}}
-        <div class="card-panel orange lighten-4" id="chat">
+        <div class="panel panel-default" id="chat">
+          <div class="panel-body">
             {{getUsername}}: {{content}}
+          </div>
         </div>
         {{/if}} {{else}}
-        <div class="card-panel pink lighten-4" id="chat">
+        <div class="panel panel-default" id="chat">
+          <div class="panel-body">
             {{getUsername}}: {{content}}
+          </div>
         </div>
         {{/unless}} {{/each}}
     </div>
     <div class="row valign-wrapper" id="message-box">
-        <form class="col s12 message-form">
+        <form class="col-xs-12 message-form">
             <div class="row">
                 {{#if currentUser}}
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <input id="new_message" type="text" length="120" name="message">
+                <div class="col-xs-12 form-group">
+                    <span class="glyphicon glyphicon-pencil"></span>
                     <label for="new_message">New Message</label>
+                    <input class="form-control input-lg" id="new_message" type="text" length="120" name="message">
                 </div>
                 {{else}}
                 <h3 class="center">Please login to begin sending messages.</h3> {{/if}}

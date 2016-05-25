@@ -6,7 +6,7 @@ A simple meteor based chat-room using blaze and iron-router
 * Privately message your friends or foes
 * Impresses prospective employers by showing off Meteor.js skills
 
-![alt tag](https://cloud.githubusercontent.com/assets/8499274/14197706/485c811a-f786-11e5-96a4-25199f50bdd1.png)
+![alt tag](https://cloud.githubusercontent.com/assets/8499274/15525713/4516c6f2-21e1-11e6-9bc8-8978d0719803.png)
 
 # Chat Commands #
 

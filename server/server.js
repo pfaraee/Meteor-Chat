@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 Meteor.publish("messages", function () {
     // we need to search for ourselves since Meteor.user() is not availible in publish functions
     var user = Meteor.users.findOne(this.userId);

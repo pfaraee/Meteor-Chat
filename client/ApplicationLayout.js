@@ -1,3 +1,9 @@
+import { Template } from 'meteor/templating';
+import { Meteor } from 'meteor/meteor';
+import { Router } from 'meteor/iron:router';
+
+const moment = require('moment');
+
 Template.ApplicationLayout.onCreated(function () {
     Meteor.subscribe("chat_rooms");
 });
@@ -9,7 +15,8 @@ Template.ApplicationLayout.events({
         var room = ChatRooms.insert({
             name: event.target.name.value,
             users: 0,
-            private: false
+            private: false,
+            created: new Date()
         });
 
         event.target.name.value = "";
@@ -34,4 +41,10 @@ Template.chatroom.events({
             _id: this._id
         });
     }
+});
+
+Template.chatroom.helpers({
+  formatTime: function (time) {
+    return moment(time).format("YYYY, MMMM DD");
+  }
 });

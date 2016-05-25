@@ -1,3 +1,8 @@
+import { Template } from 'meteor/templating';
+import { Meteor } from 'meteor/meteor';
+
+const whisper = require('whisper-handler');
+
 Template.chat.onCreated(function () {
     Meteor.subscribe("messages");
     Meteor.subscribe("userData");
@@ -8,28 +13,19 @@ Template.chat.events({
         event.preventDefault();
 
         var authArr = [],
-            str = event.target.message.value,
-            private = false;
+            str = event.target.message.value;
 
-        // "/tell" command code
-        if (str.indexOf("/tell") === 0) {
-            // so we can separate the command, from the target, from the message
-            str = str.split(" ");
-            // adds target to authorized list
-            authArr.push(str[1]);
-            // sets our string to the message
-            str = str.slice(2);
-            str = str.join(" ");
-            // sets message to private
-            private = true;
-        }
+        var message = whisper(str);
+
+        authArr.push(message.target);
 
         Messages.insert({
             author: Meteor.userId(),
             room: Router.current().params._id,
-            content: str,
-            private: private,
-            authorized: authArr
+            content: message.message,
+            private: message.private,
+            authorized: authArr,
+            created: new Date()
         });
 
         event.target.message.value = "";
