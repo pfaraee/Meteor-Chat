@@ -1,6 +1,6 @@
 # Quick Chat #
 
-A simple meteor based chat-room using blaze and iron-router
+A simple meteor based chat-room using blaze, iron-router, and bootstrap
 
 * Create chat-rooms with ease
 * Privately message your friends or foes
